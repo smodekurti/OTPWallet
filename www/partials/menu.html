@@ -1,5 +1,5 @@
 <ion-side-menus enable-menu-with-back-views="false">
-    <ion-side-menu-content drag-content="false">
+    <ion-side-menu-content scroll="false">
        <ion-nav-bar class="bar-dark">
           <ion-nav-buttons side="left">
             <button class="button button-icon button-clear ion-navicon" ng-click="openMenu()">
@@ -15,13 +15,13 @@
         <header class="bar bar-header bar-dark">
           <h1 class="title">Settings</h1>
         </header>
-        <ion-content class="has-header background" has-header="true">
+        <ion-content class="has-header background" has-header="true" scroll="false">
           <ion-list>
             <ion-item nav-clear menu-close href="#/home/startHere">
-              Create New Account
+              Account Setup
             </ion-item>
             <ion-item nav-clear menu-close href="#/home/accountList">
-              Account List
+              Accounts
             </ion-item>
             
           

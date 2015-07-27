@@ -209,10 +209,16 @@ angular.module('starter')
             $state.go("home.startHere");
         }
     }
-    
-    $scope.swipe=function(){
-      $ionicListDelegate.showDelete = true;  
-        
+
+    $scope.swipedLeft=function(){
+      //$ionicListDelegate.showDelete(true);
+        $scope.shouldShowDelete = true;
+
+    };
+    $scope.ignoreSwipe=function(){
+        $ionicListDelegate.closeOptionButtons();
+        $scope.shouldShowDelete = false;
+
     };
     
     
