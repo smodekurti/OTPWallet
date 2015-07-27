@@ -1,0 +1,24 @@
+<ion-view view-title="{{keyAlias}}">
+    <ion-pane >
+      <ion-header-bar class="bar-dark background">
+        <h1 class="title">Bax TOTP</h1>
+      </ion-header-bar>
+      <ion-content ng-init="start()">
+          <div class="container">
+              <div class="progress-wrapper" ng-style="{&apos;font-size&apos;: getFontSize()}">
+ 
+              <div class="progress">
+                  {{ currentTotp }} 
+                 
+              </div>
+             
+                <div round-progress="" max="max" current="30-current" color="{{ getColor() }}" bgcolor="{{ bgColor }}" radius="{{ radius }}" semi="isSemi" rounded="rounded" clockwise="clockwise" stroke="{{ stroke }}" animation="{{ currentAnimation }}">
+                   
+              </div>
+          </div>  
+          </div>
+      </ion-content>
+    </ion-pane>
+
+
+</ion-view>
