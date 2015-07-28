@@ -4,30 +4,39 @@
         <button class="button button-icon icon ion-navicon"
                 menu-toggle="left">
         </button>
-        <button class="button  button-clear icon" ng-class="shouldShowDelete ? 'ion-checkmark-circled' : 'ion-trash-a'"
-                ng-click="showDelete()"
-                ></button>
+        <button class="button  button-clear icon"
+                ng-class="shouldShowDelete ? 'ion-checkmark-circled' : 'ion-trash-a'"
+                ng-click="showDelete()">
+        </button>
+
+    </ion-nav-buttons>
+
+    <ion-nav-buttons side="secondary" >
+        <button class="button  button-clear icon ion-plus"
+                ng-click="">
+
+        </button>
     </ion-nav-buttons>
 
 
 
-<ion-content has-header="true" title="Account List" class="background" scroll="false">
+    <ion-content has-header="true" title="Account List" class="background" scroll="false">
     
     <ion-list
-            show-delete="shouldShowDelete " can-swipe="true">
+              show-delete="shouldShowDelete "
+              can-swipe="true"
+              >
         
         <ion-item  ng-repeat="key in keys" 
                    class="list-inset accountItem"
-                   on-swipe-left="swipedLeft()"
+                   href="#/home/showTotp/{{key.alias}}"
+                   class="item-remove-animate"
                    on-swipe-right="swipedLeft()"
-
-                   show-delete="shouldShowDelete "
                    >
             {{key.alias}}
-                     <ion-delete-button class="ion-trash-a"
-                           ng-click="deleteAccount(key)"
 
-                    >
+            <ion-delete-button class="ion-trash-a"
+                           ng-click="deleteAccount(key)">
             </ion-delete-button>
 
         </ion-item>

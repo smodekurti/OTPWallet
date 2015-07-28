@@ -1,5 +1,9 @@
 angular.module('starter')
-.controller("TotpController", function($scope, $timeout, roundProgressService,$stateParams,keyService){
+.controller("TotpController", function($scope,
+                                       $timeout,
+                                       roundProgressService,
+                                       $stateParams,
+                                       keyService){
    
     $scope.current =        0;
     $scope.max =            30;
@@ -15,21 +19,18 @@ angular.module('starter')
     $scope.currentAnimation = 'easeOutBack';
     var count =1;
     $scope.keyAlias = $stateParams.keyAlias;
+        console.log($stateParams.keyAlias);
     $scope.secretKey = keyService.getKey($scope.keyAlias).secret;
     
     $scope.start = function(){
         //Real TOTP SecretKey --- JBSWY3DPEHPK3PXP
-       console.log($scope.key);
        var totp = getTotp($scope.secretKey);
         //var totp = getTotp('JBSWY3DPEHPK3PXP');
         $scope.currentTotp = totp;
-        console.log(totp);
         timeout = $timeout(function(){
             var epoch = Math.round(new Date().getTime() / 1000.0);
             var countDown = 30 - (epoch % 30);
-            console.log(countDown);
             $scope.current = countDown;
-            
             if (epoch % 30 == 0){
                 $scope.reset();
                 $scope.start();
@@ -110,10 +111,9 @@ angular.module('starter')
                      };
     
     $scope.createAccount = function(){
-        keyService.setKey($scope.newKey);   
-        console.log("inCreaseAccount");
+        keyService.setKey($scope.newKey);
         $scope.modal.hide();
-        $state.go('home.accountList');
+        $state.go('home.showTotp', {"keyAlias" : $scope.newKey.alias});
         
     }
     
@@ -172,7 +172,7 @@ angular.module('starter')
              case 1:
                  $scope.newKey = {};
                  $scope.modal.show().then(function(modal){
-                     console.log("In Scope Modal");
+
                  });
          }
          return true;
@@ -227,10 +227,6 @@ angular.module('starter')
     $scope.showDelete = function(){
         $scope.shouldShowDelete = !$scope.shouldShowDelete;
         $ionicListDelegate.showDelete($scope.shouldShowDelete);
-        //$scope.shouldShowDelete = true;
-
-        //$ionicListDelegate.canSwipeItems=true;
-
     }
     
     

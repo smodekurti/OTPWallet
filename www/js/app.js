@@ -60,6 +60,11 @@ angular.module('starter', ['ionic','angular-svg-round-progress','ngStorage','ngC
     if(window.StatusBar) {
       StatusBar.styleDefault();
     }
+
+      $ionicPlatform.registerBackButtonAction(function (event) {
+          event.preventDefault();
+          navigator.app.backHistory();
+      }, 100);
     
     var keys = keyService.getAllKeys();
  
@@ -69,6 +74,7 @@ angular.module('starter', ['ionic','angular-svg-round-progress','ngStorage','ngC
       else{
        $state.go("home.startHere");   
       }
+
     
   });
  

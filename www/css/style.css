@@ -2,8 +2,7 @@
 
 *{
     box-sizing: border-box;
-    
-    font-weight: 600;
+    font-weight: 100;
 }
 
 body{
@@ -55,19 +54,24 @@ body{
     background-size: 100% 0px;
 }
 
+.bar-header {
+    border: 0px !important;
+    border-bottom-color: transparent !important;
+    background-image: none;
+    border-bottom: none;
+}
+
 .background, .background .pane, .background .item, .background .item-complex .item-content {
     background-color: #444444;
     color:#fff;
 }
 
-.accountItem {
-    line-height: 60px;
-    border-radius: 4em;
-    border-width: 2px;
-    border-color: #387ef5;
+.background .accountItem{
+    line-height : 40px;
+    border-radius: 1em;
+    border-width: 3px;
+    border-color: #4cd964;
 }
-
-
 
 .card {
    box-shadow: none;
@@ -125,7 +129,11 @@ padding-left: 56px;
 
 
 .bar-footer{
- height : 80px;   
+    height : 80px;
+    border: 0px !important;
+    border-top-color: transparent !important;
+    background-image: none;
+    border-top: none;
 }
 
 
