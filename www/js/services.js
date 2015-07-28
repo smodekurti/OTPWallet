@@ -4,6 +4,7 @@ app.factory('keyService', function($localStorage){
   return{setKey:setKey,
          getKey:getKey,
          getAllKeys:getAllKeys,
+         deleteKey:deleteKey,
          deleteAllKeys:deleteAllKeys
         };
     
@@ -35,6 +36,17 @@ app.factory('keyService', function($localStorage){
     function getAllKeys(){
         return $localStorage.keys;
 
+    }
+
+    function deleteKey(key) {
+        console.log(key);
+        for(i=0;i<$localStorage.keys.length;i++){
+            var storedKey = $localStorage.keys[i];
+            if(storedKey.alias === key.alias){
+                $localStorage.keys.pop();
+                break;
+            }
+        }
     }
     
     function deleteAllKeys(){

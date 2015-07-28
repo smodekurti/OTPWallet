@@ -1,11 +1,14 @@
 <ion-view view-title="Account List" >
 
-    <ion-nav-buttons side="right" >
-              <button class="button icon ion-trash-a" ng-click="deleteAllAccounts()" ng-show="shouldShowDelete">  Delete All</button>
+    <ion-nav-buttons side="left" >
+        <button class="button button-icon icon ion-navicon"
+                menu-toggle="left">
+        </button>
+        <button class="button  button-clear " ng-class="shouldShowDelete ? 'ion-checkmark-circled' : 'ion-minus-circled'"
+                ng-click="showDelete()"
+                ></button>
     </ion-nav-buttons>
-    <ion-nav-buttons side="secondary" >
-        <button class="button icon ion-android-exit secondary-buttons" ng-click="ignoreSwipe()" ng-show="shouldShowDelete">  Exit</button>
-    </ion-nav-buttons>
+
 
 
 <ion-content has-header="true" title="Account List" class="background" scroll="false">
@@ -16,18 +19,23 @@
               >
         
         <ion-item  ng-repeat="key in keys" 
-                   class="list-inset"
+                   class="list-borderless"
                    href="#/home/showTotp/{{key.alias}}"
                    class="item-remove-animate"
                    on-swipe-left="swipedLeft()"
+                   on-swipe-right="swipedLeft()"
                    >
 
 
             </button>
             <h2 class="background">{{key.alias}}</h2>
-            <ion-delete-button class="ion-minus-circled"
-                           ng-click="items.splice($index, 1)">
+
+            <ion-delete-button class="ion-trash-a"
+                           ng-click="deleteAccount(key)"
+
+                    >
             </ion-delete-button>
+
         </ion-item>
     
     </ion-list>

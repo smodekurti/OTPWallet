@@ -211,15 +211,27 @@ angular.module('starter')
     }
 
     $scope.swipedLeft=function(){
-      //$ionicListDelegate.showDelete(true);
+        $ionicListDelegate.showDelete(true);
         $scope.shouldShowDelete = true;
 
     };
-    $scope.ignoreSwipe=function(){
-        $ionicListDelegate.closeOptionButtons();
-        $scope.shouldShowDelete = false;
-
+    $scope.deleteAccount=function(account){
+       keyService.deleteKey(account);
+       $scope.keys = keyService.getAllKeys();
+       $scope.showDelete();
+        if($scope.keys.length ===0){
+            $state.go("home.startHere");
+        }
     };
+
+    $scope.showDelete = function(){
+        $scope.shouldShowDelete = !$scope.shouldShowDelete;
+        $ionicListDelegate.showDelete($scope.shouldShowDelete);
+        //$scope.shouldShowDelete = true;
+
+        //$ionicListDelegate.canSwipeItems=true;
+
+    }
     
     
 });
