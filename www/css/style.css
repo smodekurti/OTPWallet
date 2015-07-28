@@ -60,6 +60,14 @@ body{
     color:#fff;
 }
 
+.accountItem {
+    line-height: 60px;
+    border-radius: 4em;
+    border-width: 2px;
+    border-color: #387ef5;
+}
+
+
 
 .card {
    box-shadow: none;
@@ -76,7 +84,7 @@ body{
   font-size: 14px;
 }
 
-platform-android .action-sheet-backdrop.active {
+.platform-android .action-sheet-backdrop.active {
 background-color: #444444; 
 }
 .platform-android .action-sheet {

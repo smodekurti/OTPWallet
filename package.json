@@ -1,7 +1,7 @@
 {
-  "name": "baxtotp",
+  "name": "optwallet",
   "version": "1.0.0",
-  "description": "BaxTotp: An Ionic project",
+  "description": "OTPWallet: A Javascript based TOTP/HOTP Implementation ",
   "dependencies": {
     "gulp": "^3.5.6",
     "gulp-sass": "^1.3.3",
