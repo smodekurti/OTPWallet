@@ -9,7 +9,7 @@ angular.module('starter')
     $scope.max =            30;
     $scope.uploadCurrent =  0;
     $scope.stroke =         10;
-    $scope.radius =         100;
+    $scope.radius =         125;
     $scope.isSemi =         false;
     $scope.rounded =        true;
     $scope.clockwise =      true;
