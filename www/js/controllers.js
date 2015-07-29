@@ -6,17 +6,17 @@ angular.module('starter')
                                        keyService){
    
     $scope.current =        0;
-    $scope.max =            30;
+    $scope.max =            29;
     $scope.uploadCurrent =  0;
     $scope.stroke =         15;
     $scope.radius =         100;
     $scope.isSemi =         false;
-    $scope.rounded =        true;
+    $scope.rounded =        false;
     $scope.clockwise =      true;
     $scope.currentColor =   '#DE1B1B';
     $scope.bgColor =        '#614385';
     $scope.iterations =     0;
-    $scope.currentAnimation = 'easeOutBack';
+    $scope.currentAnimation = 'easeInExpo';
     var count =1;
     $scope.keyAlias = $stateParams.keyAlias;
         console.log($stateParams.keyAlias);
@@ -25,6 +25,7 @@ angular.module('starter')
     $scope.start = function(){
         //Real TOTP SecretKey --- JBSWY3DPEHPK3PXP
        var totp = getTotp($scope.secretKey);
+       totp = totp.substring(0,3) + " " + totp.substring(3,6);
         //var totp = getTotp('JBSWY3DPEHPK3PXP');
         $scope.currentTotp = totp;
         timeout = $timeout(function(){
@@ -111,9 +112,32 @@ angular.module('starter')
                      };
     
     $scope.createAccount = function(){
-        keyService.setKey($scope.newKey);
-        $scope.modal.hide();
-        $state.go('home.showTotp', {"keyAlias" : $scope.newKey.alias});
+
+        var base32String = null;
+        try {
+            base32String = Base32Decode($scope.newKey.secret);
+            keyService.setKey($scope.newKey);
+            $scope.modal.hide();
+            $state.go('home.showTotp', {"keyAlias" : $scope.newKey.alias});
+        }
+        catch(err)
+        {
+
+            $ionicPopup.show({
+                template: "<style>.popup { width:500px; border-radius:2em; }</style><p>Secret Key entered is invalid. Please enter a valid Secret Key.<p/>",
+                title: 'Invalid Secret key',
+                scope: $scope,
+                buttons: [
+                    {
+                        text: '<b>OK</b>',
+                        type: 'button-balanced'
+                    }
+                ]
+            });
+            $scope.newKey.secret="";
+            return false;
+        }
+
         
     }
     

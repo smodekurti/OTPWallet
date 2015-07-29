@@ -1,20 +1,15 @@
 <ion-view view-title="Account List" >
 
-    <ion-nav-buttons side="left" >
-        <button class="button button-icon icon ion-navicon"
-                menu-toggle="left">
-        </button>
-        <button class="button  button-clear icon"
-                ng-class="shouldShowDelete ? 'ion-checkmark-circled' : 'ion-trash-a'"
-                ng-click="showDelete()">
-        </button>
-
-    </ion-nav-buttons>
 
     <ion-nav-buttons side="secondary" >
         <button class="button  button-clear icon ion-plus"
                 ng-click="">
 
+        </button>
+
+        <button class="button  button-clear icon"
+                ng-class="shouldShowDelete ? 'ion-checkmark-circled' : 'ion-trash-a'"
+                ng-click="showDelete()">
         </button>
     </ion-nav-buttons>
 

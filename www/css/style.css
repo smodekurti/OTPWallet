@@ -2,11 +2,11 @@
 
 *{
     box-sizing: border-box;
-    font-weight: 100;
+    font-weight: 200;
 }
 
 body{
-    font-family: "Open Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-family: "Lato","Open Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
     background-color: #444444;
 }
     
@@ -45,6 +45,8 @@ body{
     margin:100px auto;
     text-align: center;
 }
+
+
 
 .pane {
     background-color: #444444;

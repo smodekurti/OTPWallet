@@ -56,11 +56,11 @@ app.factory('keyService', function($localStorage){
     
 });
 
-app.factory('QRScanService', [function () {
+app.factory('QRScanService', [function ($cordovaBarcodeScanner) {
 
   return {
     scan: function(success, fail) {
-      cordova.plugins.barcodeScanner.scan(
+        $cordovaBarcodeScanner.scan(
         function (result) { success(result); },
         function (error) { fail(error); }
       );
@@ -68,3 +68,12 @@ app.factory('QRScanService', [function () {
   };
 
 }]);
+
+app.factory('AccountCreateService', function() {
+
+    return
+    {
+
+    }
+
+});
