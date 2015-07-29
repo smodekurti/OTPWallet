@@ -11,12 +11,12 @@ angular.module('starter')
     $scope.stroke =         10;
     $scope.radius =         100;
     $scope.isSemi =         false;
-    $scope.rounded =        false;
+    $scope.rounded =        true;
     $scope.clockwise =      true;
     $scope.currentColor =   '#0074d6';
     $scope.bgColor =        '#dde';
-    $scope.iterations =     50;
-    $scope.currentAnimation = 'easeInExpo';
+    $scope.iterations =     1;
+    $scope.currentAnimation = 'linearEase';
     var count =1;
     $scope.keyAlias = $stateParams.keyAlias;
     $scope.secretKey = keyService.getKey($scope.keyAlias).secret;
@@ -25,11 +25,12 @@ angular.module('starter')
         //Real TOTP SecretKey --- JBSWY3DPEHPK3PXP
        var totp = getTotp($scope.secretKey);
        totp = totp.substring(0,3) + " " + totp.substring(3,6);
-        //var totp = getTotp('JBSWY3DPEHPK3PXP');
+
         $scope.currentTotp = totp;
         timeout = $timeout(function(){
             var epoch = Math.round(new Date().getTime() / 1000.0);
             var countDown = 30 - (epoch % 30);
+            console.log(countDown);
             $scope.current = countDown;
             if (epoch % 30 == 0){
                 $scope.reset();
@@ -38,7 +39,7 @@ angular.module('starter')
                 $scope.uploadCurrent = count++;
                 $scope.start();    
             }
-        }, 1000);
+        }, 100);
 
     };
 
@@ -47,7 +48,7 @@ angular.module('starter')
     };
 
     $scope.reset = function(){
-        $scope.stop();
+        //$scope.stop();
         $scope.currentTotp = null;
         $scope.uploadCurrent = 0;
         count = 1;
