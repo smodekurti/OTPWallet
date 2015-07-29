@@ -56,11 +56,11 @@ app.factory('keyService', function($localStorage){
     
 });
 
-app.factory('QRScanService', [function ($cordovaBarcodeScanner) {
+app.factory('QRScanService', [function () {
 
   return {
     scan: function(success, fail) {
-        $cordovaBarcodeScanner.scan(
+      cordova.plugins.barcodeScanner.scan(
         function (result) { success(result); },
         function (error) { fail(error); }
       );

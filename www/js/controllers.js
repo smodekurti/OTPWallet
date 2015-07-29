@@ -89,27 +89,26 @@ angular.module('starter')
                                            $timeout,
                                            QRScanService, $ionicPopup){
 
-     
+
+    $scope.newKey  = {alias:'',
+        secret:'',
+        timeBased:true
+    };
+
     $ionicModal.fromTemplateUrl(
-                   'partials/enterSecret.html', 
-                   function($ionicModal) 
-                   {
-                        $scope.modal = $ionicModal;
-                   }, 
-                   {
-                        scope: $scope,
-                        animation: 'slide-in-up'
-                   });
+               'partials/enterSecret.html',
+               function($ionicModal)
+               {
+                    $scope.modal = $ionicModal;
+               },
+               {
+                    scope: $scope,
+                    animation: 'slide-in-up'
+               });
+
     $scope.$on('$destroy', function() {
         $scope.modal.remove();
     });
-    
- 
-    
-    $scope.newKey  = {alias:'',
-                      secret:'',
-                      timeBased:true
-                     };
     
     $scope.createAccount = function(){
 
@@ -152,7 +151,7 @@ angular.module('starter')
     $scope.showSetupOptions = function() {
 
    // Show the action sheet
-   var hideSheet = $ionicActionSheet.show({
+     var hideSheet = $ionicActionSheet.show({
      buttons: [
        { text: 'Scan Barcode' },
        { text: 'Enter Key Manually' }
@@ -174,10 +173,11 @@ angular.module('starter')
                     $ionicModal.fromTemplate('').show().then(function() {
                       $ionicPopup.alert({
                         title: 'QR Scan Cancelled',
-                        template: 'You cancelled it!'
+                        template: 'No Code could be scanned since user canceled scanning!'
                       });
                     });
-                  } else {
+                  }
+                  else {
                    var secretParam = extractUrlValue('secret',result.text);  
                    
                     $scope.newKey.secret = secretParam;
