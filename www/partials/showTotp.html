@@ -8,12 +8,13 @@
               <div class="progress-wrapper" ng-style="{&apos;font-size&apos;: getFontSize()}">
  
               <div class="progress">
-                  {{ currentTotp }} 
+                  {{ currentTotp }}
+                  <div class="progress-counter">Your token will expire in {{current}}s</div>
               </div>
              
                 <div round-progress=""
                      max="max"
-                     current="30-current"
+                     current="31-current"
                      color="{{ getColor() }}"
                      bgcolor="{{ bgColor }}"
                      radius="{{ radius }}"

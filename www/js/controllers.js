@@ -6,22 +6,21 @@ angular.module('starter')
                                        keyService){
    
     $scope.current =        0;
-    $scope.max =            29;
+    $scope.max =            30;
     $scope.uploadCurrent =  0;
-    $scope.stroke =         15;
+    $scope.stroke =         10;
     $scope.radius =         100;
     $scope.isSemi =         false;
     $scope.rounded =        false;
     $scope.clockwise =      true;
-    $scope.currentColor =   '#DE1B1B';
-    $scope.bgColor =        '#614385';
-    $scope.iterations =     0;
+    $scope.currentColor =   '#0074d6';
+    $scope.bgColor =        '#dde';
+    $scope.iterations =     50;
     $scope.currentAnimation = 'easeInExpo';
     var count =1;
     $scope.keyAlias = $stateParams.keyAlias;
-        console.log($stateParams.keyAlias);
     $scope.secretKey = keyService.getKey($scope.keyAlias).secret;
-    
+
     $scope.start = function(){
         //Real TOTP SecretKey --- JBSWY3DPEHPK3PXP
        var totp = getTotp($scope.secretKey);
