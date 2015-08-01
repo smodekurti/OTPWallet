@@ -9,7 +9,7 @@
  
               <div class="progress">
                   {{ currentTotp }}
-                  <div class="progress-counter">Your token will expire in {{current}}s</div>
+                  <div class="progress-counter">Your token will expire in <span ng-style="{color : ((current) > 6) ? '#007aff' : 'red'}"><b><u>{{current}}s</u></b></span></div>
               </div>
              
                 <div round-progress=""

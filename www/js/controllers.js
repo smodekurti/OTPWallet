@@ -8,10 +8,10 @@ angular.module('starter')
     $scope.current =        0;
     $scope.max =            30;
     $scope.uploadCurrent =  0;
-    $scope.stroke =         10;
+    $scope.stroke =         15;
     $scope.radius =         125;
     $scope.isSemi =         false;
-    $scope.rounded =        true;
+    $scope.rounded =        false;
     $scope.clockwise =      true;
     $scope.currentColor =   '#0074d6';
     $scope.bgColor =        '#dde';
