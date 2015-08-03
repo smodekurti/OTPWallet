@@ -24,7 +24,7 @@ body{
 
 .progress-wrapper{
     position: relative;
-    margin:20px auto;
+    margin:25% auto;
     font-size: 40px;
 }
 
@@ -129,19 +129,20 @@ body{
 
 }
 .platform-android .action-sheet {
-margin: 0;
+margin: 6px;
 }
 
 .platform-android .action-sheet .action-sheet-title, .platform-android .action-sheet .button {
-text-align: center;
+text-align: left;
 border-color: #0074d6;
 font-size: 14px;
 color: inherit;
 }
 
 .platform-android .action-sheet .action-sheet-title {
+text-align: center;
 font-size: 14px;
-padding: 16px;
+padding: 14px;
 color: #666;
 }
 
@@ -150,18 +151,19 @@ color: #666;
 }
 
 .platform-android .action-sheet-group {
-margin: 0;
-border-radius: 0;
+margin: 6px;
+border-radius: 6px;
 background: white;
 color:#0074d6;
 }
 
 .platform-android .action-sheet-cancel {
-display: none;
+display: block;
+
 }
 
 .platform-android .action-sheet-has-icons .button {
-padding-left: 56px;
+padding-left: 44px;
 }
 
 

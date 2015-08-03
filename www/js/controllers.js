@@ -52,9 +52,9 @@ angular.module('starter')
         return $scope.gradient ? 'url(#gradient)' : $scope.currentColor;
     };
 
-    $scope.copyToClipboard = function(){
+    $scope.copyToClipboard = function(copyText){
         $cordovaClipboard
-            .copy($scope.currentTotp)
+            .copy(copyText)
             .then(function () {
                 // success
             }, function () {

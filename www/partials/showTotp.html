@@ -1,4 +1,4 @@
-<ion-view view-title="Token for {{keyAlias}}">
+<ion-view view-title="{{keyAlias}}">
 
     <ion-nav-buttons side="secondary" >
 
@@ -9,9 +9,11 @@
         </button>
     </ion-nav-buttons>
       <ion-content ng-init="start()">
+
           <div class="container">
+
               <div class="progress-wrapper" ng-cloak="true" ng-style="{&apos;font-size&apos;: getFontSize()}">
- 
+
               <div class="progress" ng-cloak="true">
                   {{ currentTotp }}
                   <div class="progress-counter" ng-cloak="true">Your token will expire in <span ng-style="{color : ((current) > 5) ? '#007aff' : 'red'}"><b><u>{{current}}s</u></b></span></div>
@@ -38,7 +40,7 @@
       </ion-content>
     <ion-footer-bar class="bar bar-footer bar-positive" >
 
-        <button class="button button-full button-positive  bar-footer-button" ng-click="copyToClipboard()"><i class="fa fa-clone fa-3x"></i> </button>
+        <button class="button button-full button-positive  bar-footer-button" ng-click="copyToClipboard('{{currentTotp}}')"><i class="fa fa-clone fa-3x"></i> </button>
 
 </ion-footer-bar>
 
