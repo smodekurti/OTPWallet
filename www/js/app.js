@@ -6,8 +6,9 @@
 angular.module('starter', ['ionic','angular-svg-round-progress','ngStorage','ngCordova'])
 
 
-.config(function($stateProvider,$urlRouterProvider ){
- console.log("Config");
+.config(function($stateProvider,$urlRouterProvider ,$ionicConfigProvider){
+        $ionicConfigProvider.navBar.alignTitle("center");
+        $ionicConfigProvider.maxCache = 0;
   $stateProvider
     .state('home', {
       url: '/home'  ,
@@ -21,7 +22,7 @@ angular.module('starter', ['ionic','angular-svg-round-progress','ngStorage','ngC
         views:{
         'menuContent' :{
         templateUrl: 'partials/startHere.html',
-        controller:'StartHereController'
+        controller:'AccountListController'
             }
         }
     })
@@ -50,8 +51,10 @@ angular.module('starter', ['ionic','angular-svg-round-progress','ngStorage','ngC
     
     
 })
-.run(function($ionicPlatform,$state,keyService) {
+.run(function($ionicPlatform,$state,keyService,$localStorage) {
   $ionicPlatform.ready(function() {
+
+      //$localStorage.$reset();
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
     if(window.cordova && window.cordova.plugins.Keyboard) {

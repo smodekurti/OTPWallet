@@ -5,14 +5,15 @@
       </ion-header-bar>
       <ion-content ng-init="start()">
           <div class="container">
-              <div class="progress-wrapper" ng-style="{&apos;font-size&apos;: getFontSize()}">
+              <div class="progress-wrapper" ng-cloak="true" ng-style="{&apos;font-size&apos;: getFontSize()}">
  
-              <div class="progress">
+              <div class="progress" ng-cloak="true">
                   {{ currentTotp }}
-                  <div class="progress-counter">Your token will expire in <span ng-style="{color : ((current) > 6) ? '#007aff' : 'red'}"><b><u>{{current}}s</u></b></span></div>
+                  <div class="progress-counter" ng-cloak="true">Your token will expire in <span ng-style="{color : ((current) > 5) ? '#007aff' : 'red'}"><b><u>{{current}}s</u></b></span></div>
+                  <!--div class="information">If your account login requires second factor token, enter this verification code when prompted</div-->
               </div>
              
-                <div round-progress=""
+                <div round-progress
                      max="max"
                      current="31-current"
                      color="{{ getColor() }}"
@@ -22,11 +23,13 @@
                      rounded="rounded"
                      clockwise="clockwise"
                      stroke="{{ stroke }}"
-                     animation="{{ currentAnimation }}">
+                     animation="{{ currentAnimation }}"
+                     ng-cloak="true">
                    
               </div>
           </div>  
           </div>
+
       </ion-content>
     </ion-pane>
 

@@ -13,11 +13,19 @@ $energized:                       #ffc900 !default;
 $assertive:                       #ef473a !default;
 $royal:                           #886aea !default;
 $dark:                            #444 !default;
+
 */
+
+
+$bar-light-border: #0074d6 !default;
+$bar-light-text: #0074d6 !default;
 
 // The path for our ionicons font files, relative to the built CSS in www/css
 $ionicons-font-path: "../lib/ionic/fonts" !default;
 
 // Include all of Ionic
 @import "www/lib/ionic/scss/ionic";
+
+@import "www/lib/fontawesome/scss/font-awesome";
+
 

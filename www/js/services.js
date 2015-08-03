@@ -39,11 +39,11 @@ app.factory('keyService', function($localStorage){
     }
 
     function deleteKey(key) {
-        console.log(key);
+
         for(i=0;i<$localStorage.keys.length;i++){
             var storedKey = $localStorage.keys[i];
             if(storedKey.alias === key.alias){
-                $localStorage.keys.pop();
+                $localStorage.keys.splice(i,1);
                 break;
             }
         }
@@ -71,9 +71,52 @@ app.factory('QRScanService', [function () {
 
 app.factory('AccountCreateService', function() {
 
-    return
-    {
+
+});
+
+
+app.factory('TotpFactory',function($timeout,keyService){
+
+    var timeout = null;
+    function fetchTotp(keyAlias, callback){
+        stop();
+        //console.log(keyAlias);
+
+    //Real TOTP SecretKey --- JBSWY3DPEHPK3PXP
+
+
+        timeout = $timeout(function(){
+                var secretKey = keyService.getKey(keyAlias).secret;
+
+            var totp = getTotp(secretKey);
+            totp = totp.substring(0,3) + " " + totp.substring(3,6);
+
+            var epoch = Math.round(new Date().getTime() / 1000.0);
+            var countDown = 30 - (epoch % 30);
+            callback(totp, countDown);
+            if (epoch % 30 == 0){
+                reset();
+                fetchTotp(keyAlias,callback);
+            }else{
+                fetchTotp(keyAlias,callback);
+            }
+        }, 1);
+
+        return null;
 
     }
+
+    function stop(){
+        if(timeout ===null) {
+            $timeout.cancel(timeout);
+        }
+    }
+
+    function reset(){
+        stop();
+        count = 1;
+    }
+
+    return { fetchTotp : fetchTotp };
 
 });

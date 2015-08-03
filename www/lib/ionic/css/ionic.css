@@ -3058,13 +3058,13 @@ a.subdued {
       background-size: 100% 1px;
       background-repeat: no-repeat; } }
   .bar.bar-clear {
-    border: none;
-    background: none;
+    border-color:#0074d6;
+    background-color: white;
     color: #fff; }
     .bar.bar-clear .button {
-      color: #fff; }
+      color: #0074d6; }
     .bar.bar-clear .title {
-      color: #fff; }
+      color: #0074d6; }
   .bar.item-input-inset .item-input-wrapper {
     margin-top: -1px; }
     .bar.item-input-inset .item-input-wrapper input {
