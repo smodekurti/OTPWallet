@@ -1,6 +1,7 @@
 angular.module('starter')
 .controller("TotpController", function($scope,
                                        $timeout,
+                                       $cordovaClipboard,
                                        roundProgressService,
                                        $stateParams,
                                        keyService,
@@ -50,6 +51,16 @@ angular.module('starter')
     $scope.getColor = function(){
         return $scope.gradient ? 'url(#gradient)' : $scope.currentColor;
     };
+
+    $scope.copyToClipboard = function(){
+        $cordovaClipboard
+            .copy($scope.currentTotp)
+            .then(function () {
+                // success
+            }, function () {
+                // error
+            });
+    }
     
 })
 .controller("MenuController",function($scope,$ionicSideMenuDelegate){
@@ -259,8 +270,8 @@ angular.module('starter')
         // Show the action sheet
         var hideSheet = $ionicActionSheet.show({
             buttons: [
-                { text: 'Scan Barcode' },
-                { text: 'Enter Key Manually' }
+                { text: '<i class="icon fa fa-qrcode fa-fw"></i> Scan Barcode' },
+                { text: '<i class="icon fa fa-pencil-square-o fa-fw"></i>  Enter Key Manually' }
             ],
             titleText: 'Setup Options',
             cancelText: 'Cancel',

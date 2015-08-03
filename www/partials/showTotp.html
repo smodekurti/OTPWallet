@@ -1,8 +1,13 @@
-<ion-view view-title="{{keyAlias}}">
-    <ion-pane >
-      <ion-header-bar class="bar-dark background">
-        <h1 class="title">Bax TOTP</h1>
-      </ion-header-bar>
+<ion-view view-title="Token for {{keyAlias}}">
+
+    <ion-nav-buttons side="secondary" >
+
+        <button class="button  button-clear icon fa fa-pencil-square-o"
+                ng-click="showSetupOptions()">
+
+
+        </button>
+    </ion-nav-buttons>
       <ion-content ng-init="start()">
           <div class="container">
               <div class="progress-wrapper" ng-cloak="true" ng-style="{&apos;font-size&apos;: getFontSize()}">
@@ -31,7 +36,11 @@
           </div>
 
       </ion-content>
-    </ion-pane>
+    <ion-footer-bar class="bar bar-footer bar-positive" >
+
+        <button class="button button-full button-positive  bar-footer-button" ng-click="copyToClipboard()"><i class="fa fa-clone fa-3x"></i> </button>
+
+</ion-footer-bar>
 
 
 </ion-view>
