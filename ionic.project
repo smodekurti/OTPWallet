@@ -1,4 +1,11 @@
 {
   "name": "BaxTotp",
-  "app_id": "ee613519"
+  "app_id": "ee613519",
+  "browsers": [
+    {
+      "platform": "android",
+      "browser": "crosswalk",
+      "version": "12.41.296.5"
+    }
+  ]
 }

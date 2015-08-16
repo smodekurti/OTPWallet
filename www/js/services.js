@@ -86,7 +86,7 @@ app.factory('TotpFactory',function($timeout,keyService){
 
 
         timeout = $timeout(function(){
-                var secretKey = keyService.getKey(keyAlias).secret;
+            var secretKey = keyService.getKey(keyAlias).secret;
 
             var totp = getTotp(secretKey);
             totp = totp.substring(0,3) + " " + totp.substring(3,6);
@@ -118,5 +118,20 @@ app.factory('TotpFactory',function($timeout,keyService){
     }
 
     return { fetchTotp : fetchTotp };
+
+});
+
+app.factory("UtilActionService",function($ionicActionSheet,
+                                         QRScanService,
+                                         $ionicPopup,
+                                         keyService){
+
+
+    return {showActions:showActions,
+            upsertKeys:upsertKeys};
+
+    function showActions(optionList){
+
+    }
 
 });

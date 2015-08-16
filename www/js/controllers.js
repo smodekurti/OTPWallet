@@ -5,19 +5,20 @@ angular.module('starter')
                                        roundProgressService,
                                        $stateParams,
                                        keyService,
-                                       TotpFactory){
-   
+                                       TotpFactory,
+                                       $ionicPopup){
+
     $scope.current =        0;
     $scope.max =            30;
     $scope.uploadCurrent =  0;
-    $scope.stroke =         15;
+    $scope.stroke =         3;
     $scope.radius =         125;
     $scope.isSemi =         false;
     $scope.rounded =        false;
     $scope.clockwise =      true;
     $scope.currentColor =   '#0074d6';
     $scope.bgColor =        '#dde';
-    $scope.iterations =     1;
+    $scope.iterations =     0;
     $scope.currentAnimation = 'linearEase';
     var count =1;
     $scope.keyAlias = $stateParams.keyAlias;
@@ -27,8 +28,8 @@ angular.module('starter')
     TotpFactory.fetchTotp($scope.keyAlias, function(totp, countDown){
         $scope.currentTotp = totp;
         $scope.current = countDown;
-
-        if(countDown <6){
+        $scope.increment=countDown;
+        if(countDown <5){
             $scope.currentColor = 'red';
         }
         else{
@@ -52,28 +53,55 @@ angular.module('starter')
         return $scope.gradient ? 'url(#gradient)' : $scope.currentColor;
     };
 
+
+    /*
+        UI Driven methods start here
+    */
     $scope.copyToClipboard = function(copyText){
+
         $cordovaClipboard
             .copy(copyText)
             .then(function () {
-                // success
+                //alert('Text Copied');
             }, function () {
                 // error
+                //alert('Tex Cannot be copied');
             });
     }
-    
+
+    $scope.edit=function(){
+
+    };
+
+    $scope.delete=function(){
+        console.log("Delete Clicked");
+        var confirmPopup = $ionicPopup.confirm({
+            title: 'Delete Totp Key',
+            template: 'Are you sure you want to delete this key ?'
+        });
+        confirmPopup.then(function(res) {
+            if(res) {
+                console.log('You are sure');
+            } else {
+                console.log('You are not sure');
+            }
+        });
+    };
+
+
+
 })
 .controller("MenuController",function($scope,$ionicSideMenuDelegate){
  $scope.openMenu = function () {
     $ionicSideMenuDelegate.toggleLeft();
   };
-    
+
 })
 .controller("MainController",function($scope,$ionicSideMenuDelegate){
  $scope.openMenu = function () {
     $ionicSideMenuDelegate.toggleLeft();
   };
-    
+
 })
 .controller("StartHereController",function($scope,
                                            $ionicSideMenuDelegate,
@@ -86,10 +114,10 @@ angular.module('starter')
 
 
 
-    
+
 })
 .controller("AccountListController", function($scope,
-                                               $state, 
+                                               $state,
                                                $ionicSideMenuDelegate,
                                                $ionicActionSheet,
                                                $ionicListDelegate,
@@ -323,5 +351,5 @@ angular.module('starter')
 
     };
 
-    
+
 });

@@ -64,10 +64,7 @@ angular.module('starter', ['ionic','angular-svg-round-progress','ngStorage','ngC
       StatusBar.styleDefault();
     }
 
-      $ionicPlatform.registerBackButtonAction(function (event) {
-          event.preventDefault();
-          navigator.app.backHistory();
-      }, 100);
+
     
     var keys = keyService.getAllKeys();
  

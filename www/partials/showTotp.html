@@ -2,10 +2,19 @@
 
     <ion-nav-buttons side="secondary" >
 
-        <button class="button  button-clear icon fa fa-pencil-square-o"
-                ng-click="showSetupOptions()">
-
-
+        <button class="button  button-clear icon"
+                ng-click="edit()">
+            <span class="fa-stack fa-fw">
+              <i class="fa fa-square-o fa-stack-2x"></i>
+              <i class="fa fa-pencil fa-stack-1x"></i>
+            </span>
+        </button>
+        <button class="button  button-clear icon"
+                ng-click="delete()">
+            <span class="fa-stack fa-fw">
+              <i class="fa fa-square-o fa-stack-2x"></i>
+              <i class="fa fa-trash fa-stack-1x"></i>
+            </span>
         </button>
     </ion-nav-buttons>
       <ion-content ng-init="start()">
@@ -22,7 +31,7 @@
              
                 <div round-progress
                      max="max"
-                     current="31-current"
+                     current="(31-increment)"
                      color="{{ getColor() }}"
                      bgcolor="{{ bgColor }}"
                      radius="{{ radius }}"
@@ -40,7 +49,7 @@
       </ion-content>
     <ion-footer-bar class="bar bar-footer bar-positive" >
 
-        <button class="button button-full button-positive  bar-footer-button" ng-click="copyToClipboard('{{currentTotp}}')"><i class="fa fa-clone fa-3x"></i> </button>
+        <button class="button button-full button-positive  bar-footer-button" ng-click="copyToClipboard(currentTotp)"><i class="fa fa-clone fa-3x"></i> </button>
 
 </ion-footer-bar>
 
