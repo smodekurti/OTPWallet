@@ -6,10 +6,11 @@
         <ion-list class="card" >
             <ion-item class="item-body" >
                 <center>
-                    <img src="img/logo.png" style='background-color: #0074d6'>
+                    <!--<img src="img/logo.png" style='background-color: #0074d6'>-->
+                    <i class="fa fa-plus-circle fa-mycustomx" style="color:#0074d6" ng-click="showSetupOptions()"></i>
                 
                 <p style="align:center;color:#0074d6;font-weight: 400" >
-                       Please click "Begin Setup" to start adding a new account for 2-step verification.
+                       Please click "Setup 2FA" or "Plus Sign" above to start adding a new account for 2-step verification.
                 </p>
                 </center>
            </ion-item>
@@ -22,7 +23,7 @@
         
         <button class="button button-full button-positive  bar-footer-button"
                 ng-click="showSetupOptions()"  
-                style="font-size:20px;">Begin Setup
+                style="font-size:20px;">Setup 2FA
         </button>
     </ion-footer-bar>
 

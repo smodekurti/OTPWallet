@@ -231,5 +231,6 @@ img.animated{
     -webkit-animation: filter-animation 5s infinite;
 }
 
-
-        
+.fa-mycustomx{
+    font-size:24em;
+}
