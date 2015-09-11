@@ -1,12 +1,15 @@
 angular.module('starter')
 .controller("TotpController", function($scope,
+                                       $rootScope,
                                        $timeout,
                                        $cordovaClipboard,
                                        roundProgressService,
                                        $stateParams,
                                        keyService,
                                        TotpFactory,
-                                       $ionicPopup){
+                                       $ionicPopup,
+                                       $ionicModal,
+                                        $state){
 
     $scope.current =        0;
     $scope.max =            30;
@@ -38,8 +41,25 @@ angular.module('starter')
 
     });
 
+    $ionicModal.fromTemplateUrl(
+        'partials/enterSecret.html',
+        function($ionicModal)
+        {
+            $scope.modal = $ionicModal;
+        },
+        {
+            scope: $scope,
+            animation: 'slide-in-up'
+        });
 
-    $scope.animations = [];
+    $scope.$on('$destroy', function() {
+        $scope.modal.remove();
+    });
+    $scope.editOrNew = true;
+
+
+
+        $scope.animations = [];
 
     angular.forEach(roundProgressService.animations, function(value, key){
         $scope.animations.push(key);
@@ -69,21 +89,75 @@ angular.module('starter')
             });
     }
 
-    $scope.edit=function(){
 
+
+    $scope.edit=function(alias){
+        var key = keyService.getKey(alias);
+
+
+        $scope.modal.show().then(function(modal){
+            //console.log("In Scope Modal");
+            $scope.newKey=key;
+        });
+
+        $scope.createOrUpdateAccount = function(){
+
+            var base32String = null;
+            try {
+                if($scope.newKey.alias == null || $scope.newKey.alias=="") {
+                    $scope.newKey.alias="";
+                    throw "No Alias";
+                }
+                base32String = Base32Decode($scope.newKey.secret);
+                var storedKey = keyService.getKey($scope.newKey.alias);
+                storedKey.secret = $scope.newKey.secret;
+                keyService.setKey(storedKey);
+                $rootScope.$broadcast("keysUpdated","KeysUpdated");
+                $scope.modal.hide();
+                $state.go('home.showTotp', {"keyAlias" : $scope.newKey.alias});
+            }
+            catch(err)
+            {
+
+                $ionicPopup.show({
+                    template: "<style>.popup { width:500px; border-radius:2em; }</style><p>Secret Key entered is invalid. Please enter a valid Secret Key.<p/>" + err,
+                    title: 'Invalid Secret key',
+                    scope: $scope,
+                    buttons: [
+                        {
+                            text: '<b>OK</b>',
+                            type: 'button-balanced'
+                        }
+                    ]
+                });
+                $scope.newKey.secret="";
+
+                return true;
+            }
+
+
+        }
     };
 
-    $scope.delete=function(){
-        console.log("Delete Clicked");
+    $scope.delete=function(alias){
+        console.log(alias);
         var confirmPopup = $ionicPopup.confirm({
             title: 'Delete Totp Key',
             template: 'Are you sure you want to delete this key ?'
         });
         confirmPopup.then(function(res) {
             if(res) {
-                console.log('You are sure');
+
+                keyService.deleteKeyByAlias(alias);
+                $scope.keys = keyService.getAllKeys();
+                if($scope.keys.length ===0){
+                    $state.go("home.startHere");
+                }
+                else{
+                    $state.go("home.accountList");
+                }
             } else {
-                console.log('You are not sure');
+
             }
         });
     };
@@ -231,7 +305,7 @@ angular.module('starter')
 
     $scope.newKey  = {alias:'',secret:'',timeBased:'true'};
 
-
+        $scope.editOrNew = false;
     /* Modal Popup Definitions*/
 
     $ionicModal.fromTemplateUrl(
@@ -249,7 +323,7 @@ angular.module('starter')
         $scope.modal.remove();
     });
 
-    $scope.createAccount = function(){
+    $scope.createOrUpdateAccount = function(){
 
         var base32String = null;
         try {

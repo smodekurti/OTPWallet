@@ -3,14 +3,14 @@
     <ion-nav-buttons side="secondary" >
 
         <button class="button  button-clear icon"
-                ng-click="edit()">
+                ng-click="edit('{{keyAlias}}')">
             <span class="fa-stack fa-fw">
               <i class="fa fa-square-o fa-stack-2x"></i>
               <i class="fa fa-pencil fa-stack-1x"></i>
             </span>
         </button>
         <button class="button  button-clear icon"
-                ng-click="delete()">
+                ng-click="delete('{{keyAlias}}')">
             <span class="fa-stack fa-fw">
               <i class="fa fa-square-o fa-stack-2x"></i>
               <i class="fa fa-trash fa-stack-1x"></i>
