@@ -109,9 +109,7 @@ angular.module('starter')
                     throw "No Alias";
                 }
                 base32String = Base32Decode($scope.newKey.secret);
-                var storedKey = keyService.getKey($scope.newKey.alias);
-                storedKey.secret = $scope.newKey.secret;
-                keyService.setKey(storedKey);
+                keyService.setKey($scope.newKey);
                 $rootScope.$broadcast("keysUpdated","KeysUpdated");
                 $scope.modal.hide();
                 $state.go('home.showTotp', {"keyAlias" : $scope.newKey.alias});

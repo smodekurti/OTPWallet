@@ -15,7 +15,12 @@ app.factory('keyService', function($localStorage){
         if($localStorage.keys ==null){
             $localStorage.keys = [];
         }
-        $localStorage.keys.push(keyInfo);
+        var key = getKey(keyInfo.alias);
+        if(key===null)
+            $localStorage.keys.push(keyInfo);
+        else{
+            key.secret = keyInfo.secret;
+        }
     }
     
     
