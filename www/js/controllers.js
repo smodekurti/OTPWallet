@@ -302,8 +302,7 @@ angular.module('starter')
     }
 
     $scope.newKey  = {alias:'',secret:'',timeBased:'true'};
-
-        $scope.editOrNew = false;
+    $scope.editOrNew = false;
     /* Modal Popup Definitions*/
 
     $ionicModal.fromTemplateUrl(
