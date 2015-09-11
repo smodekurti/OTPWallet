@@ -112,7 +112,7 @@ angular.module('starter')
                 keyService.setKey($scope.newKey);
                 $rootScope.$broadcast("keysUpdated","KeysUpdated");
                 $scope.modal.hide();
-                $state.go('home.showTotp', {"keyAlias" : $scope.newKey.alias});
+                $state.go('home.accountList', {"keyAlias" : $scope.newKey.alias});
             }
             catch(err)
             {
