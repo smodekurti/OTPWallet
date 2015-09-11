@@ -170,11 +170,18 @@ angular.module('starter')
                             }
                             else {
                                 var secretParam = extractUrlValue('secret',result.text);
-
-                                $scope.newKey.secret = secretParam;
-                                $scope.modal.show().then(function(modal){
-                                    //console.log("In Scope Modal");
-                                });
+                                if(secretParam!=null) {
+                                    $scope.newKey.secret = secretParam;
+                                    $scope.modal.show().then(function (modal) {
+                                        //console.log("In Scope Modal");
+                                    });
+                                }
+                                else{
+                                    $ionicPopup.alert({
+                                        title: 'Invalid QR Code',
+                                        template: 'Scanned QR Code does not contain OTP Secret. Please try another code'
+                                    });
+                                }
                             }
                         }, function(error) {
                             $ionicPopup.alert({
