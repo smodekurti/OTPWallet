@@ -11,7 +11,8 @@ angular.module('starter')
                                        $ionicModal,
                                         $state,
                                        QRScanService,
-                                       $ionicActionSheet){
+                                       $ionicActionSheet,
+                                        $ionicLoading){
 
     $scope.current =        0;
     $scope.max =            30;
@@ -84,10 +85,9 @@ angular.module('starter')
         $cordovaClipboard
             .copy(copyText)
             .then(function () {
-                //alert('Text Copied');
-            }, function () {
-                // error
-                //alert('Tex Cannot be copied');
+                $ionicLoading.show({ template: 'Totp copied to clipboard', noBackdrop: true, duration: 2000 });
+            }, function () {                // error
+
             });
     }
 
