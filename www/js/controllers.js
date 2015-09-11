@@ -12,7 +12,8 @@ angular.module('starter')
                                         $state,
                                        QRScanService,
                                        $ionicActionSheet,
-                                        $ionicLoading){
+                                        $ionicLoading,
+                                        ionicToast){
 
     $scope.current =        0;
     $scope.max =            30;
@@ -81,11 +82,11 @@ angular.module('starter')
         UI Driven methods start here
     */
     $scope.copyToClipboard = function(copyText){
-
+        ionicToast.show('Your Totp is copied to clipboard', 'bottom', false, 2500);
         $cordovaClipboard
             .copy(copyText)
             .then(function () {
-                $ionicLoading.show({ template: 'Totp copied to clipboard', noBackdrop: true, duration: 2000 });
+                ionicToast.show('Your Totp is copied to clipboard', 'bottom', false, 2500);
             }, function () {                // error
 
             });

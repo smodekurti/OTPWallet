@@ -234,3 +234,20 @@ img.animated{
 .fa-mycustomx{
     font-size:16em;
 }
+
+.loading-container{
+    -webkit-align-items: flex-start;
+    -moz-align-items: flex-start;
+    align-items: flex-start;
+    padding-top: 520px;
+.loading{
+    border-radius: 5em;
+}
+}
+.ionic_toast {
+    border-radius: 20px;
+}
+
+.ionic_toast_bottom {
+    bottom: 55px;
+}
