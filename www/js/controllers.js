@@ -29,6 +29,7 @@ angular.module('starter')
     $scope.currentAnimation = 'linearEase';
     var count =1;
     $scope.keyAlias = $stateParams.keyAlias;
+    $scope.newKey  = {alias:'',secret:'',timeBased:'true'};
     //$scope.secretKey = keyService.getKey($scope.keyAlias).secret;
     count = 0;
 
@@ -100,7 +101,11 @@ angular.module('starter')
             try {
                 if($scope.newKey.alias == null || $scope.newKey.alias=="") {
                     $scope.newKey.alias="";
-                    throw "No Alias";
+                    throw "Invalid Alias";
+                }
+                if($scope.newKey.secret == null || $scope.newKey.secret=="") {
+
+                    throw "Invalid Secret Key";
                 }
                 base32String = Base32Decode($scope.newKey.secret);
                 keyService.setKey($scope.newKey);
@@ -112,8 +117,8 @@ angular.module('starter')
             {
 
                 $ionicPopup.show({
-                    template: "<style>.popup { width:500px; border-radius:2em; }</style><p>Secret Key entered is invalid. Please enter a valid Secret Key.<p/>" + err,
-                    title: 'Invalid Secret key',
+                    template: "<style>.popup { width:500px; border-radius:2em; }</style><p>Invalid Alias or Secret Key entered is invalid. Please enter a valid value.<p/>" + err,
+                    title: err,
                     scope: $scope,
                     buttons: [
                         {
@@ -141,6 +146,7 @@ angular.module('starter')
 
     $scope.edit = function(alias) {
         var key = keyService.getKey(alias);
+
         // Show the action sheet
         var hideSheet = $ionicActionSheet.show({
             buttons: [
@@ -169,11 +175,13 @@ angular.module('starter')
                                 });
                             }
                             else {
+
                                 var secretParam = extractUrlValue('secret',result.text);
+
                                 if(secretParam!=null) {
-                                    $scope.newKey.secret = secretParam;
                                     $scope.modal.show().then(function (modal) {
-                                        //console.log("In Scope Modal");
+                                        $scope.newKey.alias = key.alias;
+                                        $scope.newKey.secret = secretParam;
                                     });
                                 }
                                 else{
@@ -192,9 +200,10 @@ angular.module('starter')
 
                         break;
                     case 1:
-                        $scope.newKey = {};
+
                         $scope.modal.show().then(function(modal){
-                            $scope.newKey=key;
+                            $scope.newKey.alias = key.alias;
+                            $scope.newKey.secret = key.secret;
                         });
                 }
                 return true;
@@ -461,11 +470,13 @@ angular.module('starter')
                                 });
                             }
                             else {
+
                                 var secretParam = extractUrlValue('secret',result.text);
 
-                                $scope.newKey.secret = secretParam;
+
                                 $scope.modal.show().then(function(modal){
                                     //console.log("In Scope Modal");
+                                    $scope.newKey.secret = secretParam;
                                 });
                             }
                         }, function(error) {
@@ -477,9 +488,9 @@ angular.module('starter')
 
                         break;
                     case 1:
-                        $scope.newKey = {};
-                        $scope.modal.show().then(function(modal){
 
+                        $scope.modal.show().then(function(modal){
+                            $scope.newKey = {};
                         });
                 }
                 return true;
