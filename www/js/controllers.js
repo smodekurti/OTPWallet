@@ -476,6 +476,7 @@ angular.module('starter')
 
                                 $scope.modal.show().then(function(modal){
                                     //console.log("In Scope Modal");
+                                    $scope.newKey.alias = "";
                                     $scope.newKey.secret = secretParam;
                                 });
                             }
