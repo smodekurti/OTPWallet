@@ -7,8 +7,10 @@ angular.module('starter', ['ionic','angular-svg-round-progress','ngStorage','ngC
 
 
 .config(function($stateProvider,$urlRouterProvider ,$ionicConfigProvider){
+        $ionicConfigProvider.views.transition('none');
         $ionicConfigProvider.navBar.alignTitle("center");
         $ionicConfigProvider.maxCache = 0;
+
   $stateProvider
     .state('home', {
       url: '/home'  ,
@@ -48,11 +50,20 @@ angular.module('starter', ['ionic','angular-svg-round-progress','ngStorage','ngC
     });
     
     //$urlRouterProvider.otherwise("/home/startHere");
-    
+    //
     
 })
 .run(function($ionicPlatform,$state,keyService,$localStorage) {
   $ionicPlatform.ready(function() {
+
+      window.plugins.nativepagetransitions.globalOptions.duration = 1000;
+      window.plugins.nativepagetransitions.globalOptions.iosdelay = 350;
+      window.plugins.nativepagetransitions.globalOptions.androiddelay = 10;
+      window.plugins.nativepagetransitions.globalOptions.winphonedelay = 350;
+      window.plugins.nativepagetransitions.globalOptions.slowdownfactor = 1;
+      // these are used for slide left/right only currently
+      window.plugins.nativepagetransitions.globalOptions.fixedPixelsTop = 0;
+      window.plugins.nativepagetransitions.globalOptions.fixedPixelsBottom = 0;
 
       //$localStorage.$reset();
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard

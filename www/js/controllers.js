@@ -112,6 +112,11 @@ angular.module('starter')
                 $rootScope.$broadcast("keysUpdated","KeysUpdated");
                 $scope.modal.hide();
                 $state.go('home.accountList', {"keyAlias" : $scope.newKey.alias});
+                window.plugins.nativepagetransitions.slide(
+                    {"direction":"right"},
+                    function (msg) {console.log("success: " + msg)}, // called when the animation has finished
+                    function (msg) {alert("error: " + msg)} // called in case you pass in weird values
+                );
             }
             catch(err)
             {
@@ -204,6 +209,7 @@ angular.module('starter')
                         $scope.modal.show().then(function(modal){
                             $scope.newKey.alias = key.alias;
                             $scope.newKey.secret = key.secret;
+                            $scope.grayKeyInput=true;
                         });
                 }
                 return true;
@@ -489,9 +495,10 @@ angular.module('starter')
 
                         break;
                     case 1:
-
+                        $scope.grayKeyInput=false;
                         $scope.modal.show().then(function(modal){
                             $scope.newKey = {};
+                            $scope.grayKeyInput=false;
                         });
                 }
                 return true;

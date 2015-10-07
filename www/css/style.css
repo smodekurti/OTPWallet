@@ -248,11 +248,11 @@ img.animated{
 }
 
 .ionic_toast {
-    border-radius: 20px;
+    border-radius: 5em;
 }
 
 .ionic_toast_bottom {
-    bottom: 55px;
+    bottom: 85px;
 }
 .uppercase{
     text-transform: uppercase;
@@ -282,4 +282,12 @@ label.item.valid-lr {
 .form-error {
     padding: 2px 0 2px 16px;
     color: red;
+}
+
+.print {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
 }
